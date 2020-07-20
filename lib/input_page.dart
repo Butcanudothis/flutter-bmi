@@ -4,11 +4,7 @@ import 'package:flutter/painting.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_card.dart';
 import 'gender_card.dart';
-
-const gclr = Color(0XFF1D1E33);
-const inactiveCardClr = Color(0xFF111328);
-const inactiveIconClr = Color(0XFF8E8E99);
-const aiclr = Colors.white70;
+import 'constants.dart';
 
 enum GenderBender {
   male,
@@ -26,19 +22,7 @@ class _InputPageState extends State<InputPage> {
   Color fclr = inactiveCardClr;
   Color miclr = inactiveIconClr;
   Color ficlr = inactiveIconClr;
-//  void genButtonPressed(GenderBender g) {
-//    if (g == GenderBender.male) {
-//      mclr = gclr;
-//      fclr = inactiveCardClr;
-//      miclr = aiclr;
-//      ficlr = inactiveIconClr;
-//    } else if (g == GenderBender.female) {
-//      fclr = gclr;
-//      mclr = inactiveCardClr;
-//      ficlr = aiclr;
-//      miclr = inactiveIconClr;
-//    }
-//  }
+
   GenderBender g;
   @override
   Widget build(BuildContext context) {
@@ -105,7 +89,10 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             //flex: 1,
-            child: ReusableCard(clr: gclr),
+            child: ReusableCard(
+              clr: gclr,
+              cardChild: Column(),
+            ),
           ),
           Expanded(
             //flex: 1,
@@ -133,13 +120,3 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
-
-//= Color(0xFF1D1F33)
-//() {
-//                      setState(() {
-//                        //genButtonPressed(GenderBender.male);
-//                        g = (g != GenderBender.male)
-//                            ? (GenderBender.male)
-//                            : (GenderBender.none);
-//                      });
-//           },

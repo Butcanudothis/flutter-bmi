@@ -1,11 +1,5 @@
-//import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/material.dart';
-//import 'input_page.dart';
-
-const txtStyle = TextStyle(
-  letterSpacing: 2.5,
-  fontWeight: FontWeight.bold,
-);
+import 'constants.dart';
 
 class GenderCard extends StatelessWidget {
   final genIcon;
