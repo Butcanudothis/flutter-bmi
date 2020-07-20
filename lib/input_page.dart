@@ -18,11 +18,11 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color mclr = inactiveCardClr;
-  Color fclr = inactiveCardClr;
-  Color miclr = inactiveIconClr;
-  Color ficlr = inactiveIconClr;
-
+  Color mclr = kInactiveCardClr;
+  Color fclr = kInactiveCardClr;
+  Color miclr = kInactiveIconClr;
+  Color ficlr = kInactiveIconClr;
+  int height = 180;
   GenderBender g;
   @override
   Widget build(BuildContext context) {
@@ -35,6 +35,7 @@ class _InputPageState extends State<InputPage> {
         ),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             //flex: 1,
@@ -52,13 +53,13 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     clr: mclr =
-                        (g == GenderBender.male) ? (gclr) : (inactiveCardClr),
+                        (g == GenderBender.male) ? (kGclr) : (kInactiveCardClr),
                     cardChild: GenderCard(
                       genIcon: FontAwesomeIcons.mars,
                       txt: 'MALE',
                       iclr: miclr = (g == GenderBender.male)
-                          ? (aiclr)
-                          : (inactiveIconClr),
+                          ? (kAiclr)
+                          : (kInactiveIconClr),
                     ),
                   ),
                 ),
@@ -73,14 +74,15 @@ class _InputPageState extends State<InputPage> {
                             : (GenderBender.none);
                       });
                     },
-                    clr: fclr =
-                        (g == GenderBender.female) ? (gclr) : (inactiveCardClr),
+                    clr: fclr = (g == GenderBender.female)
+                        ? (kGclr)
+                        : (kInactiveCardClr),
                     cardChild: GenderCard(
                       genIcon: FontAwesomeIcons.venus,
                       txt: 'FEMALE',
                       iclr: ficlr = (g == GenderBender.female)
-                          ? (aiclr)
-                          : (inactiveIconClr),
+                          ? (kAiclr)
+                          : (kInactiveIconClr),
                     ),
                   ),
                 ),
@@ -90,8 +92,55 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             //flex: 1,
             child: ReusableCard(
-              clr: gclr,
-              cardChild: Column(),
+              clr: kGclr,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'HEIGHT',
+                    style: kTxtStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: <Widget>[
+                      Text(
+                        height.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      Text(
+                        'cm',
+                        style:
+                            kTxtStyle.copyWith(fontSize: 20, letterSpacing: 0),
+                      ),
+                    ],
+                  ),
+                  SliderTheme(
+                    data: SliderThemeData(
+                      thumbShape: RoundSliderThumbShape(
+                        enabledThumbRadius: 17.0,
+                      ),
+                      overlayShape:
+                          RoundSliderOverlayShape(overlayRadius: 25.0),
+                      activeTrackColor: Colors.white,
+                      thumbColor: Color(0XFF10AABB),
+                    ),
+                    child: Slider(
+                      value: height.toDouble(),
+                      min: 140.0,
+                      max: 220,
+                      onChanged: (double newValue) {
+                        setState(() {
+                          height = newValue.round();
+                        });
+                      },
+                      //activeColor: Color(0XFF10AABB),
+                      inactiveColor: kInactiveIconClr,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -100,11 +149,11 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   //flex: 1,
-                  child: ReusableCard(clr: gclr),
+                  child: ReusableCard(clr: kGclr),
                 ),
                 Expanded(
                   //flex: 1,
-                  child: ReusableCard(clr: gclr),
+                  child: ReusableCard(clr: kGclr),
                 ),
               ],
             ),
