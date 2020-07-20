@@ -26,7 +26,19 @@ class _InputPageState extends State<InputPage> {
   Color fclr = inactiveCardClr;
   Color miclr = inactiveIconClr;
   Color ficlr = inactiveIconClr;
-
+//  void genButtonPressed(GenderBender g) {
+//    if (g == GenderBender.male) {
+//      mclr = gclr;
+//      fclr = inactiveCardClr;
+//      miclr = aiclr;
+//      ficlr = inactiveIconClr;
+//    } else if (g == GenderBender.female) {
+//      fclr = gclr;
+//      mclr = inactiveCardClr;
+//      ficlr = aiclr;
+//      miclr = inactiveIconClr;
+//    }
+//  }
   GenderBender g;
   @override
   Widget build(BuildContext context) {
@@ -46,8 +58,8 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   //flex: 1,
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    onPress: () {
                       setState(() {
                         //genButtonPressed(GenderBender.male);
                         g = (g != GenderBender.male)
@@ -55,41 +67,36 @@ class _InputPageState extends State<InputPage> {
                             : (GenderBender.none);
                       });
                     },
-                    child: ReusableCard(
-                      clr: mclr =
-                          (g == GenderBender.male) ? (gclr) : (inactiveCardClr),
-                      cardChild: GenderCard(
-                        genIcon: FontAwesomeIcons.mars,
-                        txt: 'MALE',
-                        iclr: miclr = (g == GenderBender.male)
-                            ? (aiclr)
-                            : (inactiveIconClr),
-                      ),
+                    clr: mclr =
+                        (g == GenderBender.male) ? (gclr) : (inactiveCardClr),
+                    cardChild: GenderCard(
+                      genIcon: FontAwesomeIcons.mars,
+                      txt: 'MALE',
+                      iclr: miclr = (g == GenderBender.male)
+                          ? (aiclr)
+                          : (inactiveIconClr),
                     ),
                   ),
                 ),
                 Expanded(
                   //flex: 1,
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    onPress: () {
                       setState(() {
-                        //genButtonPressed(GenderBender.female);
+                        //genButtonPressed(GenderBender.male);
                         g = (g != GenderBender.female)
                             ? (GenderBender.female)
                             : (GenderBender.none);
                       });
                     },
-                    child: ReusableCard(
-                      clr: fclr = (g == GenderBender.female)
-                          ? (gclr)
-                          : (inactiveCardClr),
-                      cardChild: GenderCard(
-                        genIcon: FontAwesomeIcons.venus,
-                        txt: 'FEMALE',
-                        iclr: ficlr = (g == GenderBender.female)
-                            ? (aiclr)
-                            : (inactiveIconClr),
-                      ),
+                    clr: fclr =
+                        (g == GenderBender.female) ? (gclr) : (inactiveCardClr),
+                    cardChild: GenderCard(
+                      genIcon: FontAwesomeIcons.venus,
+                      txt: 'FEMALE',
+                      iclr: ficlr = (g == GenderBender.female)
+                          ? (aiclr)
+                          : (inactiveIconClr),
                     ),
                   ),
                 ),
@@ -128,3 +135,11 @@ class _InputPageState extends State<InputPage> {
 }
 
 //= Color(0xFF1D1F33)
+//() {
+//                      setState(() {
+//                        //genButtonPressed(GenderBender.male);
+//                        g = (g != GenderBender.male)
+//                            ? (GenderBender.male)
+//                            : (GenderBender.none);
+//                      });
+//           },
