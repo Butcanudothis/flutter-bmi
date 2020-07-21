@@ -4,8 +4,6 @@ import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-
 class Calculate extends StatelessWidget {
   Calculate({@required this.bmi, @required this.res, @required this.resInt});
 
