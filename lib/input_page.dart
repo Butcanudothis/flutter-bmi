@@ -7,6 +7,8 @@ import 'reusable_card.dart';
 import 'gender_card.dart';
 import 'constants.dart';
 import 'bmi_calc.dart';
+import 'round_icon_button.dart';
+import 'bottom_button.dart';
 
 enum GenderBender {
   male,
@@ -251,64 +253,20 @@ class _InputPageState extends State<InputPage> {
             onTp: () {
               BmiCalc obj = new BmiCalc(height: height, weight: weight);
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Calculate(
-                          bmi: obj.calc(),
-                          res: obj.resultText(),
-                          resInt: obj.resultInt())));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Calculate(
+                    bmi: obj.calc(),
+                    res: obj.resultText(),
+                    resInt: obj.resultInt(),
+                    resClr: obj.resultColor(),
+                  ),
+                ),
+              );
             },
           ),
         ],
       ),
-    );
-  }
-}
-
-class BottomButton extends StatelessWidget {
-  final buttonTxt;
-  final Function onTp;
-  BottomButton({this.buttonTxt, this.onTp});
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTp,
-      child: Container(
-        child: Center(
-          child: Text(
-            buttonTxt,
-            style: TextStyle(
-                letterSpacing: 2.0,
-                color: Colors.white,
-                fontWeight: FontWeight.w400,
-                fontSize: 17.0),
-          ),
-        ),
-        color: kAccentColor,
-        height: 80.0,
-        width: double.infinity,
-        margin: EdgeInsets.only(top: 10.0),
-      ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  final IconData idata;
-  final Function roundIconButtonPressed;
-  RoundIconButton({this.idata, this.roundIconButtonPressed});
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: roundIconButtonPressed,
-      elevation: 0.0,
-      child: Icon(
-        idata,
-      ),
-      shape: CircleBorder(),
-      constraints: BoxConstraints.tightFor(width: 40.0, height: 40.0),
-      fillColor: kInactiveIconClr,
-      splashColor: kAiclr,
     );
   }
 }

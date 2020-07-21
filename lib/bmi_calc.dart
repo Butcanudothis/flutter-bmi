@@ -1,3 +1,6 @@
+import 'package:bmi_calculator/constants.dart';
+import 'package:flutter/material.dart';
+
 class BmiCalc {
   final int height;
   final int weight;
@@ -16,6 +19,15 @@ class BmiCalc {
       return 'NORMAL';
     else
       return 'UNDERWEIGHT';
+  }
+
+  Color resultColor() {
+    if (_bmi >= 25)
+      return Colors.pinkAccent;
+    else if (_bmi >= 18.5)
+      return kAccentColor;
+    else
+      return Colors.yellow;
   }
 
   String resultInt() {

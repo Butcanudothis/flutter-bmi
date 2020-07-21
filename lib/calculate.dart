@@ -1,16 +1,22 @@
 import 'package:bmi_calculator/constants.dart';
-import 'package:bmi_calculator/input_page.dart';
+
 import 'package:bmi_calculator/reusable_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'bottom_button.dart';
+
 class Calculate extends StatelessWidget {
-  Calculate({@required this.bmi, @required this.res, @required this.resInt});
+  Calculate(
+      {@required this.bmi,
+      @required this.res,
+      @required this.resInt,
+      this.resClr});
 
   final String bmi;
   final String res;
   final String resInt;
-
+  final Color resClr;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,8 +54,7 @@ class Calculate extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     res,
-                    style:
-                        kTxtStyle.copyWith(color: Colors.red, fontSize: 25.0),
+                    style: kTxtStyle.copyWith(color: resClr, fontSize: 25.0),
                   ),
                   Text(
                     bmi,
