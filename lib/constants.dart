@@ -14,3 +14,4 @@ const kNumberTextStyle = TextStyle(
   fontWeight: FontWeight.w800,
   fontSize: 50.0,
 );
+const kAccentColor = Color(0XFF10AABB);

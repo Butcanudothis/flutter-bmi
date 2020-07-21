@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/calculate.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -5,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'reusable_card.dart';
 import 'gender_card.dart';
 import 'constants.dart';
+import 'bmi_calc.dart';
 
 enum GenderBender {
   male,
@@ -126,7 +128,7 @@ class _InputPageState extends State<InputPage> {
                       overlayShape:
                           RoundSliderOverlayShape(overlayRadius: 25.0),
                       activeTrackColor: Colors.white,
-                      thumbColor: Color(0XFF10AABB),
+                      thumbColor: kAccentColor,
                     ),
                     child: Slider(
                       value: height.toDouble(),
@@ -244,13 +246,48 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: Color(0XFF10AABB),
-            height: 80.0,
-            width: double.infinity,
-            margin: EdgeInsets.only(top: 10.0),
+          BottomButton(
+            buttonTxt: 'CALCULATE',
+            onTp: () {
+              BmiCalc obj = new BmiCalc(height: height, weight: weight);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Calculate(
+                          bmi: obj.calc(),
+                          res: obj.resultText(),
+                          resInt: obj.resultInt())));
+            },
           ),
         ],
+      ),
+    );
+  }
+}
+
+class BottomButton extends StatelessWidget {
+  final buttonTxt;
+  final Function onTp;
+  BottomButton({this.buttonTxt, this.onTp});
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTp,
+      child: Container(
+        child: Center(
+          child: Text(
+            buttonTxt,
+            style: TextStyle(
+                letterSpacing: 2.0,
+                color: Colors.white,
+                fontWeight: FontWeight.w400,
+                fontSize: 17.0),
+          ),
+        ),
+        color: kAccentColor,
+        height: 80.0,
+        width: double.infinity,
+        margin: EdgeInsets.only(top: 10.0),
       ),
     );
   }
